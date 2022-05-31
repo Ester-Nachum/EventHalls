@@ -1,10 +1,10 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
+// import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -14,6 +14,101 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
+import { useNavigate } from 'react-router-dom';
+ import { Navigate } from 'react-router-dom';
+import './home.css'
+import ButtonGroup from '@mui/material/ButtonGroup';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+// import { Directions } from '@mui/icons-material';
+
+const options = [ 'בעל אולם', 'בעל ארוע'];
+
+function SplitButton() {
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(null);
+  let navigate=useNavigate()
+
+  const handleClick = () => {
+    console.info(`You clicked ${options[selectedIndex]}`);
+    // return selectedIndex==0? navigate('/loginEventOwner'): navigate('/loginHallOwner');
+  };
+
+  const handleMenuItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setOpen(false);
+  };
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <ButtonGroup id="group" variant="contained" ref={anchorRef} aria-label="split button" square="true">
+        <Button onClick={handleClick} >{selectedIndex!=null?options[selectedIndex]:'הרשמה'}</Button>
+        <Button
+          size="small"
+          aria-controls={open ? 'split-button-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-label="select merge strategy"
+          aria-haspopup="menu"
+          onClick={handleToggle} // return () => {navigate('/LoginEventOwner')}
+          //()=>navigate('/login')SplitButton()
+        >
+          <ArrowDropDownIcon />
+        </Button>
+      </ButtonGroup>
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === 'bottom' ? 'center top' : 'center bottom',
+            }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList id="split-button-menu" autoFocusItem>
+                  {options.map((option, index) => (
+                    <MenuItem 
+                      key={option}
+                      selected={index === selectedIndex}
+                      onClick={(event) => handleMenuItemClick(event, index)&& selectedIndex==0? navigate('/loginEventOwner'): navigate('/loginHallOwner')}
+                    >
+                      {option}
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </React.Fragment>
+  );
+}
 
 function Copyright(props) {
   return (
@@ -94,6 +189,7 @@ const footers = [
 ];
 
 function PricingContent() {
+  // const [isShow,setIsShow]=React.useState(false);
   return (
     <React.Fragment>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
@@ -105,10 +201,10 @@ function PricingContent() {
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            Event
+          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }} >
+            Login
           </Typography>
-          <nav>
+          {/* <nav>
             <Link
               variant="button"
               color="text.primary"
@@ -133,10 +229,12 @@ function PricingContent() {
             >
               Support
             </Link>
-          </nav>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+          </nav> */}
+          {/* <Button  onClick={()=>navigate('/login')SplitButton()} variant="outlined" sx={{ my: 1, mx: 1.5 }}> */}
+          {/* <Button onClick={() => setIsShow(true)} variant="outlined" sx={{ my: 1, mx: 1.5 }}>
             Login
-          </Button>
+          </Button> */}
+          <SplitButton/>
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
@@ -225,7 +323,7 @@ function PricingContent() {
       </Container>
       {/* Footer */}
       <Container
-        maxWidth="md"
+        maxWidth="lg"
         component="footer"
         sx={{
           borderTop: (theme) => `1px solid ${theme.palette.divider}`,

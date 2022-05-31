@@ -1,0 +1,14 @@
+body{
+    width: 100%;
+}
+#group{
+    direction: ltr;
+}
+.css-zqcytf-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:first-of-type){
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+.css-zqcytf-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:last-of-type) {
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
