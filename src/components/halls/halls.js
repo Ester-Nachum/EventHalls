@@ -14,8 +14,11 @@ export default function TitlebarImageList() {
 React.useEffect(()=>{
   
   // dispatch(getHalls())
-},[])
+},[])   
+
   return (
+    <>
+    <h1>helloww</h1>
     <ImageList sx={{ width: '100%', height: '100%' }}>
       {/* <ImageListItem key="Subheader" cols={2}>
         <ListSubheader component="div">December</ListSubheader>
@@ -43,6 +46,7 @@ React.useEffect(()=>{
         </ImageListItem>
       ))}
     </ImageList>
+    </>
   );
 }
 

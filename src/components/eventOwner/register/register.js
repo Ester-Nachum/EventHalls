@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useNavigate} from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -29,6 +30,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  let navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -65,18 +68,8 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="שם פרטי"
+                  label="שם מלא"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="שם משפחה"
-                  name="lastName"
-                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -140,7 +133,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link component="button" onClick={() => { navigate('/LoginEventOwner') }} variant="body2">
                 כבר יש לך חשבון? התחבר
                 </Link>
               </Grid>
