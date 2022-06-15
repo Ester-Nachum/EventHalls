@@ -33,7 +33,7 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    debugger;
+    ;
     // axios.get(`https://localhost:44378/API/${data.get('email')}/${data.get('password')}`)
     //   .then(res => console.log(res.data))
     //   .catch(err=>console.log(err))Get?email=${data.get('email')}&password=${data.get('password')}

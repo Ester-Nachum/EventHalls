@@ -61,7 +61,7 @@ export default function SignUp() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -117,11 +117,45 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="CreditCardNumber"
+                  label="מספר כרטיס אשראי"
+                  type="CreditCardNumber"
+                  id="CreditCardNumber"
+                  autoComplete="new-CreditCardNumber"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="Validity"
+                  label="תוקף"
+                  type="Validity"
+                  id="Validity"
+                  autoComplete="new-Validity"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="back3Digits"
+                  label="3 ספרות אחרונות"
+                  type="back3Digits"
+                  id="back3Digits"
+                  autoComplete="new-back3Digits"
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label= "אני רוצה לקבל השראה, מבצעים שיווקיים ועדכונים במייל."
                 />
               </Grid>
+              
             </Grid>
             <Button
               type="submit"
