@@ -40,7 +40,8 @@ export default function SignIn() {
     
     // const [wrongPassword, setWrongPassword] = useState("")
 
-    axios.get(`LoginEvent?email=${data.get('email')}&password=${data.get('password')}`).then(res => {
+    axios.get(`LoginEvent.Get?email=${data.get('email')}&password=${data.get('password')}`).then(res => {
+      debugger
         if (res.data == "Ok")
         console.log("ok")
         // navigate('/halls')

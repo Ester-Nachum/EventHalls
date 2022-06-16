@@ -5,7 +5,7 @@ let Http=axios.create({
     withCredentials:true,
 
     headers:{
-        'content-type':'application/json',
+        // 'content-type':'application/json',
         // 'Access-Control-Allow-Origin':'http://localhost:3000',
         // 'Access-Control-Allow-Credentials':'*',
         // 'Access-Control-Allow-Methods' : 'GET, POST, OPTIONS',

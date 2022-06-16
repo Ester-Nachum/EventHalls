@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios'
+import axios from '../../axios'
 import { Navigate, useNavigate } from 'react-router-dom';
 
 
@@ -21,7 +21,7 @@ const theme = createTheme();
 
 
 export default function SignIn() {
-
+const [wrongPassword,setWrongPassword]=React.useState("הסיסמא תקינה!")
   const Checkout = () => {
     return <Checkout />;
   }
@@ -33,15 +33,16 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    axios.get(`LoginOwner?email=${data.get('email')}&password=${data.get('password')}`).then(res => {
+    axios.get(`LoginOwner/Get?email=${data.get('email')}&password=${data.get('password')}`).then(res => {
+
       console.log(res)
-      if (res.data == "Ok")
+      if (res.data == "ok"){
       console.log("ok")
-      // navigate('/halls')
+      navigate('/halls')}
       else {
-        // if (res.data == "Conflict")
-        //   setWrongPassword("הסיסמא שגויה")
-        // else 
+        if (res.data == "Conflict")
+          setWrongPassword("הסיסמא שגויה")
+        else 
         navigate('/register')
       }
     })

@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -30,7 +31,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const navigate=useNavigate();
+  let navigate = useNavigate()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -38,6 +40,14 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    let owner = {
+      NameOwnerJoy: data.get('name'),
+      EmailOwnerJoys: data.get('email'),
+      IDOwnerJoys: data.get('id'),
+      PasswordOwnerJoys: data.get('password'),
+      PhoneJoysOwner: data.get('password')
+    }
+    axios.post('')
   };
 
   return (
@@ -63,10 +73,10 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="name"
                   required
                   fullWidth
-                  id="firstName"
+                  id="name"
                   label="שם מלא"
                   autoFocus
                 />
@@ -116,24 +126,59 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label= "אני רוצה לקבל השראה, מבצעים שיווקיים ועדכונים במייל."
+                <TextField
+                  required
+                  fullWidth
+                  name="CreditCardNumber"
+                  label="מספר כרטיס אשראי"
+                  type="CreditCardNumber"
+                  id="CreditCardNumber"
+                  autoComplete="new-CreditCardNumber"
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="Validity"
+                  label="תוקף"
+                  type="Validity"
+                  id="Validity"
+                  autoComplete="new-Validity"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="back3Digits"
+                  label="3 ספרות אחרונות"
+                  type="back3Digits"
+                  id="back3Digits"
+                  autoComplete="new-back3Digits"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="אני רוצה לקבל השראה, מבצעים שיווקיים ועדכונים במייל."
+                />
+              </Grid>
+
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => { navigate('/halls') }}
             >
               התחברות
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link component="button" onClick={()=>{navigate('/LoginHallOwner')}} variant="body2">
-                כבר יש לך חשבון? התחבר
+                <Link component="button" onClick={() => { navigate('/LoginEventOwner') }} variant="body2">
+                  כבר יש לך חשבון? התחבר
                 </Link>
               </Grid>
             </Grid>

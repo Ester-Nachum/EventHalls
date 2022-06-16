@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {useNavigate} from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -30,8 +30,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  let navigate = useNavigate()
-
+  const navigate=useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -117,58 +116,23 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="CreditCardNumber"
-                  label="מספר כרטיס אשראי"
-                  type="CreditCardNumber"
-                  id="CreditCardNumber"
-                  autoComplete="new-CreditCardNumber"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="Validity"
-                  label="תוקף"
-                  type="Validity"
-                  id="Validity"
-                  autoComplete="new-Validity"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="back3Digits"
-                  label="3 ספרות אחרונות"
-                  type="back3Digits"
-                  id="back3Digits"
-                  autoComplete="new-back3Digits"
-                />
-              </Grid>
-              <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label= "אני רוצה לקבל השראה, מבצעים שיווקיים ועדכונים במייל."
                 />
               </Grid>
-              
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={()=>{navigate('/halls')}}
             >
               התחברות
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link component="button" onClick={() => { navigate('/LoginEventOwner') }} variant="body2">
+                <Link component="button" onClick={()=>{navigate('/LoginHallOwner')}} variant="body2">
                 כבר יש לך חשבון? התחבר
                 </Link>
               </Grid>
