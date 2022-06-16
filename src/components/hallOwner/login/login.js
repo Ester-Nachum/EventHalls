@@ -33,7 +33,8 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    axios.get(`LoginOwner/Get?email=${data.get('email')}&password=${data.get('password')}`).then(res => {
+    axios.get(`LoginOwner?email=${data.get('email')}&password=${data.get('password')}`).then(res => {
+      console.log(res)
       if (res.data == "Ok")
       console.log("ok")
       // navigate('/halls')
